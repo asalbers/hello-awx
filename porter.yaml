@@ -4,7 +4,7 @@
 # Uncomment out the sections below to take full advantage of what Porter can do!
 
 name: hello-awx
-version: 0.1.1
+version: 0.1.2
 description: "An example Porter bundle that knows how to use awx...."
 # TODO: update the registry to your own, e.g. myregistry
 registry: ghcr.io/squillace
@@ -22,6 +22,10 @@ install:
       description: "Install Hello World"
       arguments:
         - config
+      flags:
+        conf.username: "{{bundle.credentials.awx_username}}"
+        conf.password: "{{bundle.credentials.awx_password}}"
+        conf.host: "{{bundle.parameters.tower_base_url}}"
 
 upgrade:
   - exec:
@@ -39,15 +43,15 @@ uninstall:
 
 # Below is an example of how to define credentials
 # See https://porter.sh/author-bundles/#credentials
-#credentials:
-#  - name: kubeconfig
-#    path: /root/.kube/config
-#  - name: username
-#    env: USERNAME
+credentials:
+  - name: awx_username
+    env: AWX_USERNAME
+  - name: awx_password
+    env: AWX_PASSWORD
 
 # Below is an example of how to define parameters
 # See https://porter.sh/author-bundles/#parameters
-#parameters:
-#  - name: mysql_user
-#    type: string
-#    default: wordpress
+parameters:
+  - name: tower_base_url
+    type: string
+    default: https://127.0.0.1:443

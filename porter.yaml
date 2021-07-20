@@ -15,14 +15,13 @@ dockerfile: Dockerfile.tmpl
 
 mixins:
   - exec
-  - ansible
+  - awx
 
 install:
-  - exec:
+  - awx:
       description: "Install Hello World"
-      command: ./helpers.sh
       arguments:
-        - install
+        - config
 
 upgrade:
   - exec:

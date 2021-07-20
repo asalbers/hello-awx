@@ -29,10 +29,10 @@ jobs:
         # uses: getporter/gh-action@d8539f57d75587d98651fc94de9e7e63abfaf75e
         uses: getporter/gh-action@v0.1.3
         with:
-          porter_version: v0.38.1
+          porter_version: v0.38.4
       - name: Pull in porter mixins
         run: |
-          porter mixins install pac --url https://github.com/squillace/porter-ansible/releases/download --version v0.1.1
+          porter mixins install awx --url https://github.com/squillace/porter-ansible/releases/download --version v0.1.1
       - name: Login to GitHub Packages OCI Registry
         uses: docker/login-action@v1
         with:
